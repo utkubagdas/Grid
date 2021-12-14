@@ -5,14 +5,18 @@ using UnityEngine;
 public class GridCreator : MonoBehaviour
 {
     public GameObject grid;
-    public int rows;
-    public int cols;
-    float tileSize = 1.35f;
+    public int col;
+    public int row;
+    public RectTransform spawnPos;
+    float width;
+    float height;
+    public Transform leftUp;
+    public Transform rightDown;
+    float panelXSize;
+    float panelYSize;
 
     public void CreateGrid()
     {
-        var gridObject = Instantiate(grid);
-        gridObject.transform.position = Vector3.zero;
 
     }
 
@@ -23,24 +27,38 @@ public class GridCreator : MonoBehaviour
 
     private void GenerateGrid()
     {
-        transform.position = Vector2.zero;
-        GameObject gridObject = Instantiate(grid);
+        panelXSize = Mathf.Abs(leftUp.position.x - rightDown.position.x);
+        panelYSize = Mathf.Abs(leftUp.position.y - rightDown.position.y);
 
-        for (int row = 0; row < rows; row++)
+        float width = panelXSize / row;
+        float height = panelYSize / col;
+
+        float defaultGridScaleX = grid.transform.lossyScale.x;
+        float defaultGridScaleY = grid.transform.lossyScale.y;
+
+        float defaultWidth = grid.GetComponent<Renderer>().bounds.size.x;
+        float defaultHeight = grid.GetComponent<Renderer>().bounds.size.y;
+
+        float scaleX = defaultGridScaleX * width / defaultWidth;
+        float scaleY = defaultGridScaleY * height / defaultHeight;
+
+        
+        float x = width / 2;
+        float y = height / 2;
+        Vector3 startPos = spawnPos.position + new Vector3(x, -y);
+        Vector3 spawnPosition = startPos;
+
+        for (int i = 0; i < col; i++)
         {
-            for (int col = 0; col < cols; col++)
+            spawnPosition.y = startPos.y - i * height;
+            for (int k = 0; k < row; k++)
             {
-                GameObject tile = Instantiate(gridObject);
-                float posX = col * tileSize;
-                float posY = row * -tileSize;
-
-                tile.transform.position = new Vector2(posX, posY);
+                spawnPosition.x = startPos.x + k * width;
+                var gridob = Instantiate(grid);
+                gridob.transform.localScale = new Vector3(scaleX, scaleY, gridob.transform.localScale.z);
+                gridob.transform.position = spawnPosition;
+                
             }
         }
-
-        Destroy(gridObject);
-        float gridW = cols * tileSize;
-        float gridH = rows * tileSize;
-        transform.position = new Vector2(-gridW / 2 + tileSize / 2, gridH / 2 - tileSize / 2);
     }
 }
