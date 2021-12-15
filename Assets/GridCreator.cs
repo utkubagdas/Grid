@@ -14,6 +14,8 @@ public class GridCreator : MonoBehaviour
     public Transform rightDown;
     float panelXSize;
     float panelYSize;
+    public GridController[,] gridArray;
+    bool control = false;
 
     public void CreateGrid()
     {
@@ -22,6 +24,7 @@ public class GridCreator : MonoBehaviour
 
     void Start()
     {
+        gridArray = new GridController[col, row];
         GenerateGrid();
     }
 
@@ -55,10 +58,20 @@ public class GridCreator : MonoBehaviour
             {
                 spawnPosition.x = startPos.x + k * width;
                 var gridob = Instantiate(grid);
+                gridArray[i, k] = gridob.GetComponent<GridController>();         
+                Debug.Log(gridArray[i, k]);
                 gridob.transform.localScale = new Vector3(scaleX, scaleY, gridob.transform.localScale.z);
                 gridob.transform.position = spawnPosition;
                 
             }
+        }
+    }
+
+    private void Update()
+    {
+        if(Input.GetMouseButton(0))
+        {
+            
         }
     }
 }

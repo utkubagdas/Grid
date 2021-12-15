@@ -577,8 +577,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 3168572269228416257, guid: 78222820a6bfa194ca492bddcc378b60, type: 3}
-  col: 3
-  row: 5
+  col: 15
+  row: 10
   spawnPos: {fileID: 1339125153}
   leftUp: {fileID: 1339125153}
   rightDown: {fileID: 1410954912}
