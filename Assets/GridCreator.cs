@@ -32,7 +32,7 @@ public class GridCreator : MonoBehaviour
 
     void Start()
     {
-        gridArray = new GridController[col, row];
+        gridArray = new GridController[100,100];
     }
 
     private void GenerateGrid()
@@ -85,6 +85,7 @@ public class GridCreator : MonoBehaviour
         {
             for (int k = 0; k < row; k++)
             {
+                if(gridArray[i,k] != null)
                 gridArray[i, k] = null;
             }
         }
