@@ -28,17 +28,21 @@ public class GridController : MonoBehaviour
                     gridCreator.gridArray[i, k + 1].hasX = false;
                     gridCreator.gridArray[i, k + 2].GetComponentInChildren<TextMeshPro>().enabled = false;
                     gridCreator.gridArray[i, k + 2].hasX = false;
+                    if(gridCreator.gridArray[i, k + 3] != null)
                     if (gridCreator.gridArray[i, k + 3].hasX)
                     {
                         gridCreator.gridArray[i, k + 3].GetComponentInChildren<TextMeshPro>().enabled = false;
                         gridCreator.gridArray[i, k + 3].hasX = false;
-                    }
+
+                    if (gridCreator.gridArray[i, k + 4] != null)
                     if (gridCreator.gridArray[i, k + 4].hasX)
                     {
                         gridCreator.gridArray[i, k + 4].GetComponentInChildren<TextMeshPro>().enabled = false;
                         gridCreator.gridArray[i, k + 4].hasX = false;
                     }
                     }
+                    
+                }
                 if (gridCreator.gridArray[i + 2, k] != null)
                 if (gridCreator.gridArray[i, k].hasX && gridCreator.gridArray[i + 1, k].hasX && gridCreator.gridArray[i + 2, k].hasX)
                 {
@@ -48,16 +52,19 @@ public class GridController : MonoBehaviour
                     gridCreator.gridArray[i + 1, k].hasX = false;
                     gridCreator.gridArray[i + 2, k].GetComponentInChildren<TextMeshPro>().enabled = false;
                     gridCreator.gridArray[i + 2, k].hasX = false;
+                    if (gridCreator.gridArray[i + 3, k] != null)
                     if(gridCreator.gridArray[i + 3, k].hasX)
                     {
                         gridCreator.gridArray[i + 3, k].GetComponentInChildren<TextMeshPro>().enabled = false;
                         gridCreator.gridArray[i + 3, k].hasX = false;
-                    }
+                    if (gridCreator.gridArray[i + 4, k] != null)
                     if (gridCreator.gridArray[i + 4, k].hasX)
                     {
                         gridCreator.gridArray[i + 4, k].GetComponentInChildren<TextMeshPro>().enabled = false;
                         gridCreator.gridArray[i + 4, k].hasX = false;
-                    }    
+                    }
+                    }
+                      
                 }
             }
         }
