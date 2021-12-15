@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GridController : MonoBehaviour
 {
@@ -20,10 +21,23 @@ public class GridController : MonoBehaviour
             {
                 if (gridCreator.gridArray[i, k].hasX && gridCreator.gridArray[i, k + 1].hasX && gridCreator.gridArray[i, k + 2].hasX)
                 {
-                    Debug.Log("KAZANDIN");
+                    gridCreator.gridArray[i, k].GetComponentInChildren<TextMeshPro>().enabled = false;
+                    gridCreator.gridArray[i, k].hasX = false;
+                    gridCreator.gridArray[i, k + 1].GetComponentInChildren<TextMeshPro>().enabled = false;
+                    gridCreator.gridArray[i, k + 1].hasX = false;
+                    gridCreator.gridArray[i, k + 2].GetComponentInChildren<TextMeshPro>().enabled = false;
+                    gridCreator.gridArray[i, k + 2].hasX = false;
+                }
+                if (gridCreator.gridArray[i, k].hasX && gridCreator.gridArray[i + 1, k].hasX && gridCreator.gridArray[i + 2, k].hasX)
+                {
+                    gridCreator.gridArray[i, k].GetComponentInChildren<TextMeshPro>().enabled = false;
+                    gridCreator.gridArray[i, k].hasX = false;
+                    gridCreator.gridArray[i + 1, k].GetComponentInChildren<TextMeshPro>().enabled = false;
+                    gridCreator.gridArray[i + 1, k].hasX = false;
+                    gridCreator.gridArray[i + 2, k].GetComponentInChildren<TextMeshPro>().enabled = false;
+                    gridCreator.gridArray[i + 2, k].hasX = false;
                 }
             }
-
         }
     }
 

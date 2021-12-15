@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using System;
+using UnityEngine.UI;
 
 public class GridCreator : MonoBehaviour
 {
@@ -15,17 +18,21 @@ public class GridCreator : MonoBehaviour
     float panelXSize;
     float panelYSize;
     public GridController[,] gridArray;
-    bool control = false;
+    public Text colText;
+    public Text rowText;
 
     public void CreateGrid()
     {
+        col = Convert.ToInt32(colText.text);
+        row = Convert.ToInt32(rowText.text);
 
+        ClearGrid();
+        GenerateGrid();
     }
 
     void Start()
     {
         gridArray = new GridController[col, row];
-        GenerateGrid();
     }
 
     private void GenerateGrid()
@@ -59,7 +66,6 @@ public class GridCreator : MonoBehaviour
                 spawnPosition.x = startPos.x + k * width;
                 var gridob = Instantiate(grid);
                 gridArray[i, k] = gridob.GetComponent<GridController>();         
-                Debug.Log(gridArray[i, k]);
                 gridob.transform.localScale = new Vector3(scaleX, scaleY, gridob.transform.localScale.z);
                 gridob.transform.position = spawnPosition;
                 
@@ -67,11 +73,20 @@ public class GridCreator : MonoBehaviour
         }
     }
 
-    private void Update()
+    private void ClearGrid()
     {
-        if(Input.GetMouseButton(0))
+        foreach (var item in gridArray)
         {
-            
+            if (item != null)
+                Destroy(item.gameObject);
+        }
+
+        for (int i = 0; i < col; i++)
+        {
+            for (int k = 0; k < row; k++)
+            {
+                gridArray[i, k] = null;
+            }
         }
     }
 }
